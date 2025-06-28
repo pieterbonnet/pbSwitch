@@ -249,6 +249,21 @@ Inherits DesktopCanvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function LeftText() As string
+		  Return me.mOnText
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub LeftText(assigns newValue as string)
+		  If newValue <> Me.mOnText Then
+		    Me.mOnText = newValue
+		    Me.Refresh
+		  end
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function OnLeft() As Boolean
 		  Return not mValue
 		End Function
@@ -273,6 +288,21 @@ Inherits DesktopCanvas
 		  mValue = Value
 		  RaiseEvent ValueChanged(value, True)
 		  Me.Refresh
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function RightText() As string
+		  Return me.mOffText
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RightText(assigns newValue as string)
+		  If newValue <> Me.mOffText Then
+		    Me.mOffText = newValue
+		    Me.Refresh
+		  End
 		End Sub
 	#tag EndMethod
 
@@ -526,23 +556,6 @@ Inherits DesktopCanvas
 		Italic As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mOnText
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  If value <> mOnText Then
-			    Me.mOnText = value
-			    Me.Refresh
-			  End If
-			End Set
-		#tag EndSetter
-		LeftText As String
-	#tag EndComputedProperty
-
 	#tag Property, Flags = &h21
 		Private mBallAnimation As Boolean = True
 	#tag EndProperty
@@ -674,7 +687,7 @@ Inherits DesktopCanvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If value <> mOffTextDeltaX Then 
+			  If value <> mOffTextDeltaX Then
 			    mOffTextDeltaX = value
 			    Me.Refresh
 			  end
@@ -692,7 +705,7 @@ Inherits DesktopCanvas
 		#tag Setter
 			Set
 			  mOffText = value
-			  me.Refresh     
+			  me.Refresh
 			End Set
 		#tag EndSetter
 		OffText As String
@@ -813,23 +826,6 @@ Inherits DesktopCanvas
 			End Set
 		#tag EndSetter
 		OnTextDeltaX As Integer
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mOffText
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  If value <> mOffText Then
-			    Me.mOffText = value
-			    Me.Refresh
-			  End If
-			End Set
-		#tag EndSetter
-		RightText As String
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
@@ -1247,22 +1243,6 @@ Inherits DesktopCanvas
 			InitialValue="&c000000"
 			Type="Color"
 			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RightText"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LeftText"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="OnLeft"

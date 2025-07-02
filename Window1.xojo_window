@@ -9,9 +9,9 @@ Begin DesktopWindow Window1
    HasCloseButton  =   True
    HasFullScreenButton=   False
    HasMaximizeButton=   True
-   HasMinimizeButton=   True
+   HasMinimizeButton=   False
    HasTitleBar     =   True
-   Height          =   596
+   Height          =   222
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -20,11 +20,11 @@ Begin DesktopWindow Window1
    MenuBarVisible  =   False
    MinimumHeight   =   64
    MinimumWidth    =   64
-   Resizeable      =   True
-   Title           =   "Untitled"
+   Resizeable      =   False
+   Title           =   "pbSwitch Demo"
    Type            =   0
    Visible         =   True
-   Width           =   600
+   Width           =   429
    Begin DesktopCheckBox CheckBox1
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -33,7 +33,7 @@ Begin DesktopWindow Window1
       FontName        =   "Segoe UI"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   20
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
       Left            =   213
@@ -60,6 +60,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -88,6 +89,8 @@ Begin DesktopWindow Window1
       OffText         =   ""
       OffTextColor    =   &c00000000
       OnBackcolor     =   &c0000FF00
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   ""
       OnTextColor     =   &c00000000
       OnTextDeltaX    =   0
@@ -108,6 +111,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -122,7 +126,7 @@ Begin DesktopWindow Window1
       FontName        =   "SmallSystem"
       FontSize        =   11.0
       FontUnit        =   0
-      Height          =   22
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
       Left            =   20
@@ -136,6 +140,8 @@ Begin DesktopWindow Window1
       OffText         =   "Option 2"
       OffTextColor    =   &cFFFFFF00
       OnBackcolor     =   &c80008000
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   "Option 1"
       OnTextColor     =   &cFFFFFF00
       OnTextDeltaX    =   0
@@ -144,7 +150,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   80
+      Top             =   70
       Transparent     =   True
       Underline       =   False
       Value           =   False
@@ -156,6 +162,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cA0A0A000
@@ -184,6 +191,8 @@ Begin DesktopWindow Window1
       OffText         =   ""
       OffTextColor    =   &c00000000
       OnBackcolor     =   &c00B70000
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   ""
       OnTextColor     =   &c00000000
       OnTextDeltaX    =   0
@@ -192,7 +201,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   124
+      Top             =   142
       Transparent     =   True
       Underline       =   False
       Value           =   False
@@ -206,7 +215,7 @@ Begin DesktopWindow Window1
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   20
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
       Left            =   101
@@ -238,7 +247,7 @@ Begin DesktopWindow Window1
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   20
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
       Left            =   120
@@ -257,11 +266,11 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   80
+      Top             =   70
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   100
+      Width           =   161
    End
    Begin DesktopLabel Label3
       AllowAutoDeactivate=   True
@@ -270,10 +279,10 @@ Begin DesktopWindow Window1
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   20
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
-      Left            =   82
+      Left            =   84
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -289,11 +298,11 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   124
+      Top             =   142
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   100
+      Width           =   197
    End
    Begin DesktopCheckBox chkSynchro
       AllowAutoDeactivate=   True
@@ -303,7 +312,7 @@ Begin DesktopWindow Window1
       FontName        =   "Segoe UI"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   20
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
       Left            =   341
@@ -330,6 +339,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -347,7 +357,7 @@ Begin DesktopWindow Window1
       Height          =   24
       Index           =   -2147483648
       Italic          =   False
-      Left            =   18
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -358,6 +368,8 @@ Begin DesktopWindow Window1
       OffText         =   ""
       OffTextColor    =   &c00000000
       OnBackcolor     =   &c00007900
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   ""
       OnTextColor     =   &c00000000
       OnTextDeltaX    =   0
@@ -366,7 +378,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   170
+      Top             =   178
       Transparent     =   True
       Underline       =   False
       Value           =   False
@@ -380,10 +392,10 @@ Begin DesktopWindow Window1
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   20
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
-      Left            =   101
+      Left            =   103
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -399,11 +411,94 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   170
+      Top             =   178
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   100
+      Width           =   178
+   End
+   Begin pbSwitch switchContrast
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowFocusRing  =   True
+      AllowTabs       =   True
+      AutoContrast    =   True
+      Backdrop        =   0
+      BallAnimation   =   True
+      BallBorderColor =   &cC0C0C000
+      BallBorderVisible=   False
+      BallLeftColor   =   &cF2F2F200
+      BallRightColor  =   &cF2F2F200
+      Bold            =   True
+      BorderColor     =   &c00000000
+      BorderVisible   =   False
+      DeltaTextY      =   0.0
+      Enabled         =   True
+      FontName        =   "SmallSystem"
+      FontSize        =   11.0
+      FontUnit        =   0
+      Height          =   24
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      OffBackcolor    =   &c80000000
+      OffDeltaX       =   0
+      OffText         =   "Light"
+      OffTextColor    =   &cFFFFFF00
+      OnBackcolor     =   &c00FF0000
+      OnLeft          =   False
+      OnRight         =   False
+      OnText          =   "Dark"
+      OnTextColor     =   &cFFFFFF00
+      OnTextDeltaX    =   0
+      Scope           =   0
+      TabIndex        =   24
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   106
+      Transparent     =   True
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   70
+   End
+   Begin DesktopLabel Label5
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   24
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   103
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   25
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Auto Contrast (Text Color)"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   106
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   178
    End
 End
 #tag EndDesktopWindow

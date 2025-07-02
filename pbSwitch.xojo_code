@@ -198,7 +198,7 @@ Inherits DesktopCanvas
 		  If Me.mValue And Me.OnText.Trim <> "" Then
 		    
 		    w = g.TextWidth( Me.OnText )
-		    g.DrawingColor = ContrastColor( colBackColor )
+		    If AutoContrast Then g.DrawingColor = ContrastColor( colBackColor )
 		    g.DrawText Me.OnText.Trim, 9 + mOnTextDeltaX, y, g.Width - 31, True
 		    
 		  ElseIf Not Me.mValue And Me.OffText.Trim <> "" Then
@@ -206,7 +206,7 @@ Inherits DesktopCanvas
 		    w = g.TextWidth( Me.OffText )
 		    x = g.Width - w - 11
 		    If x < 28 Then x = 28
-		    g.DrawingColor = ContrastColor( colBackColor )
+		    If AutoContrast Then g.DrawingColor = ContrastColor( colBackColor )
 		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - 34, True
 		    
 		  End
@@ -353,6 +353,10 @@ Inherits DesktopCanvas
 		Event ValueChanged(NewValue as boolean, ByCode as Boolean = True)
 	#tag EndHook
 
+
+	#tag Property, Flags = &h0
+		AutoContrast As Boolean = True
+	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
@@ -996,38 +1000,6 @@ Inherits DesktopCanvas
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="OnBackcolor"
-			Visible=true
-			Group="Appearance ON"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OnText"
-			Visible=true
-			Group="Appearance ON"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OffBackcolor"
-			Visible=true
-			Group="Appearance OFF"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OffText"
-			Visible=true
-			Group="Appearance OFF"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Enabled"
 			Visible=true
 			Group="Appearance"
@@ -1105,77 +1077,6 @@ Inherits DesktopCanvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FontName"
-			Visible=true
-			Group="Font"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FontUnit"
-			Visible=true
-			Group="Font"
-			InitialValue=""
-			Type="FontUnits"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Default"
-				"1 - Pixel"
-				"2 - Point"
-				"3 - Inches"
-				"4 - Millimeter"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FontSize"
-			Visible=true
-			Group="Font"
-			InitialValue=""
-			Type="SIngle"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Bold"
-			Visible=true
-			Group="Font"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Italic"
-			Visible=true
-			Group="Font"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Underline"
-			Visible=true
-			Group="Font"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Backdrop"
-			Visible=false
-			Group="Appearance"
-			InitialValue=""
-			Type="Picture"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="TabPanelIndex"
-			Visible=false
-			Group="Position"
-			InitialValue="0"
-			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -1280,6 +1181,117 @@ Inherits DesktopCanvas
 			Group="Behavior"
 			InitialValue=""
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutoContrast"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontName"
+			Visible=true
+			Group="Font"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontUnit"
+			Visible=true
+			Group="Font"
+			InitialValue=""
+			Type="FontUnits"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Pixel"
+				"2 - Point"
+				"3 - Inches"
+				"4 - Millimeter"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontSize"
+			Visible=true
+			Group="Font"
+			InitialValue=""
+			Type="SIngle"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Bold"
+			Visible=true
+			Group="Font"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Italic"
+			Visible=true
+			Group="Font"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Underline"
+			Visible=true
+			Group="Font"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnBackcolor"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnText"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OffBackcolor"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OffText"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Backdrop"
+			Visible=false
+			Group="Appearance"
+			InitialValue=""
+			Type="Picture"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TabPanelIndex"
+			Visible=false
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

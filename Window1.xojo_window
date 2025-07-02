@@ -60,6 +60,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -110,6 +111,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -160,6 +162,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cA0A0A000
@@ -336,6 +339,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -418,6 +422,7 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoContrast    =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -473,7 +478,7 @@ Begin DesktopWindow Window1
       Height          =   24
       Index           =   -2147483648
       Italic          =   False
-      Left            =   120
+      Left            =   103
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -485,7 +490,7 @@ Begin DesktopWindow Window1
       TabIndex        =   25
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Label Contrast Color"
+      Text            =   "Auto Contrast (Text Color)"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
@@ -493,7 +498,7 @@ Begin DesktopWindow Window1
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   161
+      Width           =   178
    End
 End
 #tag EndDesktopWindow
@@ -564,8 +569,6 @@ End
 		  End
 		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events switchContrast
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

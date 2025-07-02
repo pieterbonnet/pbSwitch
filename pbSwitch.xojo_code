@@ -91,14 +91,14 @@ Inherits DesktopCanvas
 		  If Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus Then colBorder = Color.HighlightColor
 		  
 		  If Not Me.mEnabled Then
-		    colBackColor = ChangeColorValue(Color.FillColor, -10)
+		    colBackColor = ChangeColorValue( Color.FillColor, -10 )
 		  ElseIf Me.value Then
-		    colBackColor  =  mOnBackColor
+		    colBackColor = mOnBackColor
 		  Else
 		    colBackColor = mOffBackColor
 		  End
 		  
-		  If (Me.mPressed Or Me.mHover) And mEnabled Then colBackColor = ChangeColorValue(colBackColor, 25)
+		  If ( Me.mPressed Or Me.mHover ) And mEnabled Then colBackColor = ChangeColorValue( colBackColor, 25 )
 		  
 		  // Dessin de la partie gauche et droite pleine
 		  
@@ -108,7 +108,7 @@ Inherits DesktopCanvas
 		  
 		  // Dessin de la bordure gauche et droiute
 		  
-		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
+		  If mBorderVisible Or ( Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus ) Then 
 		    g.DrawingColor = colBorder
 		    g.DrawOval 0, 0, Rayon, Rayon
 		    g.DrawOval g.Width - Rayon, 0, Rayon, Rayon
@@ -116,14 +116,14 @@ Inherits DesktopCanvas
 		  
 		  // Dessin du rectangle central
 		  g.DrawingColor = colBackColor
-		  g.FillRectangle (Rayon/2),0, g.Width - Rayon, Rayon
+		  g.FillRectangle( Rayon / 2 ), 0, g.Width - Rayon, Rayon
 		  
 		  // Dessin des lignes
 		  
-		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
+		  If mBorderVisible Or ( Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus ) Then
 		    g.DrawingColor = colBorder
-		    g.DrawLine (Rayon/2), 0, g.Width - (Rayon/2) , 0
-		    g.DrawLine (Rayon/2), rayon - 1 , g.Width - (rayon/2), rayon - 1
+		    g.DrawLine( Rayon / 2 ), 0, g.Width - ( Rayon / 2 ), 0
+		    g.DrawLine( Rayon / 2 ), rayon - 1, g.Width - ( rayon / 2 ), rayon - 1
 		  End
 		  
 		  Var x As Double
@@ -150,14 +150,14 @@ Inherits DesktopCanvas
 		    Else
 		      g.DrawingColor = Me.mBallLeftColor
 		    End
-		    'g.DrawingColor =  Me.mBallColor 
+		    // g.DrawingColor =  Me.mBallColor 
 		  Else 
 		    g.DrawingColor = Color.DarkBevelColor
 		  End
 		  
 		  If Not mPressed Or Not mBallAnimation Then
 		    
-		    g.FillOval x, 2, rayon - 4, rayon -4
+		    g.FillOval x, 2, rayon - 4, rayon - 4
 		    
 		    If Me.mBallBorderVisible Then
 		      g.DrawingColor = Me.mBallBorderColor
@@ -173,7 +173,7 @@ Inherits DesktopCanvas
 		      g.DrawOval x, 2, rayon, rayon - 4
 		    End
 		    
-		  end
+		  End
 		  
 		  // Dessin des textes
 		  // Applique les règlages
@@ -184,7 +184,7 @@ Inherits DesktopCanvas
 		  g.Italic = Me.mItalic
 		  g.Underline = Me.mUnderline
 		  
-		  Var y As Double = (g.TextHeight("WWWW",2000) / 2) + 8 + Me.DeltaTextY
+		  Var y As Double = ( g.TextHeight( "WWWW", 2000 ) / 2 ) + 8 + Me.DeltaTextY
 		  Var w As Double
 		  
 		  If Not Me.mEnabled Then
@@ -197,21 +197,23 @@ Inherits DesktopCanvas
 		  
 		  If Me.mValue And Me.OnText.Trim <> "" Then
 		    
-		    w = g.TextWidth(Me.OnText)
+		    w = g.TextWidth( Me.OnText )
+		    g.DrawingColor = ContrastColor( colBackColor )
 		    g.DrawText Me.OnText.Trim, 9 + mOnTextDeltaX, y, g.Width - 31, True
 		    
 		  ElseIf Not Me.mValue And Me.OffText.Trim <> "" Then
 		    
-		    w = g.TextWidth(Me.OffText)
+		    w = g.TextWidth( Me.OffText )
 		    x = g.Width - w - 11
 		    If x < 28 Then x = 28
+		    g.DrawingColor = ContrastColor( colBackColor )
 		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - 34, True
 		    
 		  End
 		  
 		  g.RestoreState
 		  
-		  RaiseEvent AfterDrawingSwitch(g, areas)
+		  RaiseEvent AfterDrawingSwitch( g, areas )
 		  
 		End Sub
 	#tag EndEvent
@@ -246,6 +248,26 @@ Inherits DesktopCanvas
 		  Super.Constructor
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function ContrastColor(BackgroundColor As Color) As Color
+		  // This method calculates the optimal Text Color( black Or white ) based on the
+		  // luminance Of the  background Color To ensure good readability And contrast.
+		  
+		  Var c As Integer
+		  Var luminance As Double
+		  
+		  luminance = (0.299 * BackgroundColor.Red + 0.587 * BackgroundColor.Green + 0.114 * BackgroundColor.Blue)/255
+		  
+		  If luminance > 0.5 Then
+		    c = 0 // bright colors - black font
+		  Else
+		    c = 255 // dark colors - white font
+		  End If
+		  
+		  Return  Color.RGB(c,c,c)
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

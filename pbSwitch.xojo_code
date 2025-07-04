@@ -88,6 +88,7 @@ Inherits DesktopCanvas
 		  Var colBackColor As Color
 		  Var colBorder As Color = Me.mBorderColor
 		  
+		  
 		  If Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus Then colBorder = Color.HighlightColor
 		  
 		  If Not Me.mEnabled Then
@@ -131,14 +132,14 @@ Inherits DesktopCanvas
 		  If Me.value Then
 		    
 		    If mPressed Then
-		      x = g.Width - 27
+		      x = g.Width - rayon - mBallMargin
 		    Else
-		      x = g.Width - 23
+		      x = g.Width - rayon + mBallMargin
 		    End
 		    
 		  Else
 		    
-		    x = 4
+		    x = mBallMargin 
 		    
 		  End
 		  
@@ -150,27 +151,26 @@ Inherits DesktopCanvas
 		    Else
 		      g.DrawingColor = Me.mBallLeftColor
 		    End
-		    'g.DrawingColor =  Me.mBallColor 
 		  Else 
 		    g.DrawingColor = Color.DarkBevelColor
 		  End
 		  
 		  If Not mPressed Or Not mBallAnimation Then
 		    
-		    g.FillOval x, 2, rayon - 4, rayon -4
+		    g.FillOval x, mBallMargin, rayon - (mBallMargin * 2), rayon - (mBallMargin * 2)
 		    
 		    If Me.mBallBorderVisible Then
 		      g.DrawingColor = Me.mBallBorderColor
-		      g.DrawOval x, 2, rayon - 4, rayon - 4
+		      g.DrawOval x, mBallMargin, rayon - (mBallMargin * 2), rayon - (mBallMargin * 2)
 		    End
 		    
 		  Else
 		    
-		    g.FillOval x, 2, rayon, rayon - 4
+		    g.FillOval x, mBallMargin, rayon, rayon - (mBallMargin * 2)
 		    
 		    If Me.mBallBorderVisible Then
 		      g.DrawingColor = Me.mBallBorderColor
-		      g.DrawOval x, 2, rayon, rayon - 4
+		      g.DrawOval x, mBallMargin, rayon, rayon - (mBallMargin * 2)
 		    End
 		    
 		  end
@@ -198,20 +198,20 @@ Inherits DesktopCanvas
 		  If Me.mValue And Me.OnText.Trim <> "" Then
 		    
 		    w = g.TextWidth(Me.OnText)
-		    g.DrawText Me.OnText.Trim, 9 + mOnTextDeltaX, y, g.Width - 31, True
+		    g.DrawText Me.OnText.Trim, 9 + mOnTextDeltaX, y, g.Width - rayon - mBallMargin - 4, True
 		    
 		  ElseIf Not Me.mValue And Me.OffText.Trim <> "" Then
 		    
 		    w = g.TextWidth(Me.OffText)
 		    x = g.Width - w - 11
 		    If x < 28 Then x = 28
-		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - 34, True
+		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - rayon - mBallMargin - 7, True
 		    
 		  End
 		  
 		  g.RestoreState
 		  
-		  RaiseEvent AfterDrawingSwitch(g, areas)
+		  RaiseEvent AfterDrawingSwitch(g, areas, Me.mPressed, Me.mHover)
 		  
 		End Sub
 	#tag EndEvent
@@ -308,7 +308,7 @@ Inherits DesktopCanvas
 
 
 	#tag Hook, Flags = &h0
-		Event AfterDrawingSwitch(g as Graphics, areas() as Rect)
+		Event AfterDrawingSwitch(g as Graphics, areas() as Rect, Pressed as Boolean, Hover as Boolean)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -398,6 +398,25 @@ Inherits DesktopCanvas
 			End Set
 		#tag EndSetter
 		BallLeftColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mBallMargin
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value <> mBallMargin Then
+			    mBallMargin = value
+			    Me.Refresh
+			  End
+			  
+			  
+			End Set
+		#tag EndSetter
+		BallMargin As Integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -570,6 +589,10 @@ Inherits DesktopCanvas
 
 	#tag Property, Flags = &h21
 		Private mBallLeftColor As Color = &cFFFFFF00
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mBallMargin As Integer = 3
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -913,7 +936,7 @@ Inherits DesktopCanvas
 			Name="Width"
 			Visible=true
 			Group="Position"
-			InitialValue="120"
+			InitialValue="70"
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
@@ -974,38 +997,6 @@ Inherits DesktopCanvas
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="OnBackcolor"
-			Visible=true
-			Group="Appearance ON"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OnText"
-			Visible=true
-			Group="Appearance ON"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OffBackcolor"
-			Visible=true
-			Group="Appearance OFF"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OffText"
-			Visible=true
-			Group="Appearance OFF"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Enabled"
 			Visible=true
 			Group="Appearance"
@@ -1019,6 +1010,22 @@ Inherits DesktopCanvas
 			Group="Appearance"
 			InitialValue=""
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BorderVisible"
+			Visible=true
+			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BorderColor"
+			Visible=true
+			Group="Appearance"
+			InitialValue="&cB9B9B900"
+			Type="Color"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -1086,6 +1093,22 @@ Inherits DesktopCanvas
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="OnLeft"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnRight"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FontName"
 			Visible=true
 			Group="Font"
@@ -1141,6 +1164,118 @@ Inherits DesktopCanvas
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BallMargin"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="3"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BallAnimation"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BallBorderVisible"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BallBorderColor"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="&cB9B9B900"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BallLeftColor"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="&cF3F3F300"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BallRightColor"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="&cF3F3F300"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnBackcolor"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue="&c00A82B00"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnText"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnTextDeltaX"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OnTextColor"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OffBackcolor"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue="&cB0000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OffText"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OffDeltaX"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OffTextColor"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Backdrop"
 			Visible=false
 			Group="Appearance"
@@ -1154,110 +1289,6 @@ Inherits DesktopCanvas
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OnTextColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OffTextColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BallBorderColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BallBorderVisible"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BallAnimation"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OffDeltaX"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OnTextDeltaX"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BorderVisible"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BorderColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BallLeftColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BallRightColor"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OnLeft"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OnRight"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

@@ -11,7 +11,7 @@ Begin DesktopWindow Window1
    HasMaximizeButton=   True
    HasMinimizeButton=   True
    HasTitleBar     =   True
-   Height          =   596
+   Height          =   292
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -65,6 +65,7 @@ Begin DesktopWindow Window1
       BallBorderColor =   &cC0C0C000
       BallBorderVisible=   False
       BallLeftColor   =   &c4E4E4E00
+      BallMargin      =   4
       BallRightColor  =   &cF2F2F200
       Bold            =   False
       BorderColor     =   &c00000000
@@ -88,6 +89,8 @@ Begin DesktopWindow Window1
       OffText         =   ""
       OffTextColor    =   &c00000000
       OnBackcolor     =   &c0000FF00
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   ""
       OnTextColor     =   &c00000000
       OnTextDeltaX    =   0
@@ -113,6 +116,7 @@ Begin DesktopWindow Window1
       BallBorderColor =   &cC0C0C000
       BallBorderVisible=   False
       BallLeftColor   =   &cF2F2F200
+      BallMargin      =   3
       BallRightColor  =   &cF2F2F200
       Bold            =   True
       BorderColor     =   &c00000000
@@ -136,6 +140,8 @@ Begin DesktopWindow Window1
       OffText         =   "Option 2"
       OffTextColor    =   &cFFFFFF00
       OnBackcolor     =   &c80008000
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   "Option 1"
       OnTextColor     =   &cFFFFFF00
       OnTextDeltaX    =   0
@@ -161,6 +167,7 @@ Begin DesktopWindow Window1
       BallBorderColor =   &cA0A0A000
       BallBorderVisible=   True
       BallLeftColor   =   &cF2F2F200
+      BallMargin      =   3
       BallRightColor  =   &cF2F2F200
       Bold            =   False
       BorderColor     =   &cA0A0A000
@@ -184,6 +191,8 @@ Begin DesktopWindow Window1
       OffText         =   ""
       OffTextColor    =   &c00000000
       OnBackcolor     =   &c00B70000
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   ""
       OnTextColor     =   &c00000000
       OnTextDeltaX    =   0
@@ -335,6 +344,7 @@ Begin DesktopWindow Window1
       BallBorderColor =   &cC0C0C000
       BallBorderVisible=   False
       BallLeftColor   =   &c00007900
+      BallMargin      =   3
       BallRightColor  =   &cF2F2F200
       Bold            =   False
       BorderColor     =   &c00004200
@@ -358,6 +368,8 @@ Begin DesktopWindow Window1
       OffText         =   ""
       OffTextColor    =   &c00000000
       OnBackcolor     =   &c00007900
+      OnLeft          =   False
+      OnRight         =   False
       OnText          =   ""
       OnTextColor     =   &c00000000
       OnTextDeltaX    =   0
@@ -395,11 +407,94 @@ Begin DesktopWindow Window1
       TabIndex        =   23
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "After draw"
+      Text            =   "Using After draw event to draw checkmark"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
       Top             =   170
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   235
+   End
+   Begin pbSwitch pbSwitch1
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowFocusRing  =   True
+      AllowTabs       =   True
+      Backdrop        =   0
+      BallAnimation   =   True
+      BallBorderColor =   &cB9B9B900
+      BallBorderVisible=   False
+      BallLeftColor   =   &cF3F3F300
+      BallMargin      =   5
+      BallRightColor  =   &cF3F3F300
+      Bold            =   False
+      BorderColor     =   &cB9B9B900
+      BorderVisible   =   True
+      DeltaTextY      =   0.0
+      Enabled         =   True
+      FontName        =   ""
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   24
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   18
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      OffBackcolor    =   &cB0000000
+      OffDeltaX       =   0
+      OffText         =   ""
+      OffTextColor    =   &c00000000
+      OnBackcolor     =   &c00A82B00
+      OnLeft          =   False
+      OnRight         =   False
+      OnText          =   ""
+      OnTextColor     =   &c00000000
+      OnTextDeltaX    =   0
+      Scope           =   2
+      TabIndex        =   25
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   217
+      Transparent     =   True
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   70
+   End
+   Begin DesktopLabel Label5
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   103
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   26
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Ball margin = 5"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   217
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -459,18 +554,18 @@ End
 #tag EndEvents
 #tag Events SwitchADdemo
 	#tag Event
-		Sub AfterDrawingSwitch(g as Graphics, areas() as Rect)
+		Sub AfterDrawingSwitch(g as Graphics, areas() as Rect, Pressed as Boolean, Hover as Boolean)
 		  #Pragma Unused areas
 		  
 		  If Me.Value Then
 		    g.DrawingColor = Me.OnBackcolor
 		    g.Bold = True
-		    g.DrawText "✓", g.Width - 18, 16
+		    g.DrawText "✓", g.Width - 17, 16
 		  Else
 		    g.DrawingColor = Me.OffBackcolor
 		    g.Bold = True
 		    g.FontSize = 20
-		    g.DrawText "×", 7, 17
+		    g.DrawText "×", 5, 18
 		  End
 		End Sub
 	#tag EndEvent

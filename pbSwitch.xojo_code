@@ -68,6 +68,7 @@ Inherits DesktopCanvas
 		Sub MouseUp(x As Integer, y As Integer)
 		  #Pragma Unused x
 		  #Pragma Unused y
+		  
 		  Me.mValue = Not Me.mValue
 		  mPressed = False
 		  Me.Refresh
@@ -79,17 +80,34 @@ Inherits DesktopCanvas
 		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma Unused areas
 		  
-		  g.SaveState
+		  g.SaveState // Saves the state to restore it when the AfterDraw Event is triggered
 		  
+		  // High quality
 		  g.AntiAliased = True
 		  g.AntiAliasMode = Graphics.AntiAliasModes.HighQuality
 		  
-		  Var Rayon As Integer = g.Height
+		  Var Radius As Integer = g.Height
 		  Var colBackColor As Color
-		  Var colBorder As Color = Me.mBorderColor
+		  Var colBorder As Color
+		  Var colText As Color
+		  Var colBall As Color
+		  
+		  // Determination of colors ////////////////////////////////////////
+		  
+		  // Set the color of the border
+		  // If the control has the focus, then we systematically draw a border with the system color "HighLight"
+		  // even if it is not enabled
+		   
+		  If Me.AllowFocusRing _
+		  And Me.AllowFocus _
+		  And Me.HaveFocus _
+		  Then colBorder = Color.HighlightColor _
+		  Else colBorder = Me.mBorderColor
 		  
 		  
-		  If Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus Then colBorder = Color.HighlightColor
+		  // Sets the background Color (on Or off).
+		  // If disabled, a System color, otherwise the property color.
+		  // If the cursor Is over the control, it Is lightened.
 		  
 		  If Not Me.mEnabled Then
 		    colBackColor = ChangeColorValue(Color.FillColor, -10)
@@ -101,82 +119,118 @@ Inherits DesktopCanvas
 		  
 		  If (Me.mPressed Or Me.mHover) And mEnabled Then colBackColor = ChangeColorValue(colBackColor, 25)
 		  
-		  // Dessin de la partie gauche et droite pleine
+		  
+		  // Sets the color of the text, if enabled or automatic, or that of the property
+		  
+		  If Not Me.mEnabled Then
+		    
+		    colText = &cEFEFEF00 // Light Grey
+		    
+		  ElseIf Me.mValue Then // If On
+		    
+		    If mAutoOnTextColor Then
+		      If BrightNess(mOnBackcolor) > 128 Then colText = Color.Black Else colText = Color.White
+		    Else
+		      colText = Me.mOnTextColor
+		    End
+		    
+		  Else // if Off
+		    
+		    If mAutoOffTextColor Then
+		      If BrightNess(mOffBackcolor) > 128 Then colText = Color.Black Else colText = Color.White
+		    Else
+		      colText = Me.mOffTextColor
+		    End
+		    
+		  End
+		  
+		  // Set then color ot the ball
+		  
+		  If Not Me.mEnabled Then 
+		    colBall = Color.DarkBevelColor
+		  ElseIf Me.mValue Then
+		    colBall = Me.mBallRightColor
+		  Else
+		    colBall = Me.mBallLeftColor
+		  End
+		  
+		  
+		  // End of determination of colors ////////////////////////////////////////
+		  
+		  // Draw the half discs of the sides
 		  
 		  g.DrawingColor = colBackColor
-		  g.FillOval 0, 0, Rayon, Rayon
-		  g.FillOval g.Width - Rayon, 0, Rayon, Rayon
+		  g.FillOval 0, 0, Radius, Radius
+		  g.FillOval g.Width - Radius, 0, Radius, Radius
 		  
-		  // Dessin de la bordure gauche et droiute
+		  // If necessary, drawing of the border of the discs
+		  // If requested in the Property or if the control has focus
 		  
 		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
 		    g.DrawingColor = colBorder
-		    g.DrawOval 0, 0, Rayon, Rayon
-		    g.DrawOval g.Width - Rayon, 0, Rayon, Rayon
+		    g.DrawOval 0, 0, Radius, Radius
+		    g.DrawOval g.Width - Radius, 0, Radius, Radius
 		  End
 		  
-		  // Dessin du rectangle central
+		  // Drawing of the central rectangle
 		  g.DrawingColor = colBackColor
-		  g.FillRectangle (Rayon/2),0, g.Width - Rayon, Rayon
+		  g.FillRectangle (Radius/2),0, g.Width - Radius, Radius
 		  
-		  // Dessin des lignes
+		  // If necessary, draw the border lines at the top and bottom
 		  
 		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
 		    g.DrawingColor = colBorder
-		    g.DrawLine (Rayon/2), 0, g.Width - (Rayon/2) , 0
-		    g.DrawLine (Rayon/2), rayon - 1 , g.Width - (rayon/2), rayon - 1
+		    g.DrawLine (Radius/2), 0, g.Width - (Radius/2) , 0
+		    g.DrawLine (Radius/2), Radius - 1 , g.Width - (Radius/2), Radius - 1
 		  End
 		  
-		  Var x As Double
+		  // Calculate the position of the ball
+		  
+		  Var xBall As Double
 		  
 		  If Me.value Then
 		    
 		    If mPressed Then
-		      x = g.Width - rayon - mBallMargin
+		      xBall = g.Width - Radius - mBallMargin
 		    Else
-		      x = g.Width - rayon + mBallMargin
+		      xBall = g.Width - Radius + mBallMargin
 		    End
 		    
 		  Else
 		    
-		    x = mBallMargin 
+		    xBall = mBallMargin 
 		    
 		  End
 		  
-		  // Dessin de la bille
 		  
-		  If Me.mEnabled Then 
-		    If Me.mValue Then
-		      g.DrawingColor = Me.mBallRightColor
-		    Else
-		      g.DrawingColor = Me.mBallLeftColor
-		    End
-		  Else 
-		    g.DrawingColor = Color.DarkBevelColor
-		  End
+		  
+		  g.DrawingColor = colBall // Set the color of the ball
+		  
+		  //Drawing the ball.
+		  //If animation is requested And the mouse button Is pressed, deformation towards the center Of the control.
 		  
 		  If Not mPressed Or Not mBallAnimation Then
 		    
-		    g.FillOval x, mBallMargin, rayon - (mBallMargin * 2), rayon - (mBallMargin * 2)
+		    g.FillOval xBall, mBallMargin, Radius - (mBallMargin * 2), Radius - (mBallMargin * 2)
 		    
 		    If Me.mBallBorderVisible Then
 		      g.DrawingColor = Me.mBallBorderColor
-		      g.DrawOval x, mBallMargin, rayon - (mBallMargin * 2), rayon - (mBallMargin * 2)
+		      g.DrawOval xBall, mBallMargin, Radius - (mBallMargin * 2), Radius - (mBallMargin * 2)
 		    End
 		    
 		  Else
 		    
-		    g.FillOval x, mBallMargin, rayon, rayon - (mBallMargin * 2)
+		    g.FillOval xBall, mBallMargin, Radius, Radius - (mBallMargin * 2)
 		    
 		    If Me.mBallBorderVisible Then
 		      g.DrawingColor = Me.mBallBorderColor
-		      g.DrawOval x, mBallMargin, rayon, rayon - (mBallMargin * 2)
+		      g.DrawOval xBall, mBallMargin, Radius, Radius - (mBallMargin * 2)
 		    End
 		    
 		  end
 		  
-		  // Dessin des textes
-		  // Applique les règlages
+		  // Drawing the text On Or Off
+		  // Apply the settings
 		  g.FontName = Me.mFontName
 		  g.FontSize = Me.mFontSize
 		  g.FontUnit = Me.mFontUnit
@@ -184,32 +238,39 @@ Inherits DesktopCanvas
 		  g.Italic = Me.mItalic
 		  g.Underline = Me.mUnderline
 		  
-		  Var y As Double = (g.TextHeight("WWWW",2000) / 2) + 8 + Me.DeltaTextY
-		  Var w As Double
 		  
-		  If Not Me.mEnabled Then
-		    g.DrawingColor = &cEFEFEF00
-		  ElseIf Me.mValue Then
-		    g.DrawingColor = Me.mOnTextColor
-		  Else
-		    g.DrawingColor = Me.mOffTextColor
-		  End
+		  
+		  
+		  Var y As Double = (g.TextHeight("WWWW",2000) / 2) + 8 + Me.DeltaTextY
+		  Var x As Double
+		  Var w As Double
+		  Var h As Double 
+		  
+		  g.DrawingColor = colText
 		  
 		  If Me.mValue And Me.OnText.Trim <> "" Then
 		    
+		    // Calculating coordinates 
 		    w = g.TextWidth(Me.OnText)
-		    g.DrawText Me.OnText.Trim, 9 + mOnTextDeltaX, y, g.Width - rayon - mBallMargin - 4, True
+		    h = g.TextHeight(Me.OnText, 2000)
+		    y = (g.Height / 2) - h/2 + (g.FontAscent * 0.85) + Me.DeltaTextY
+		    
+		    w = g.TextWidth(Me.OnText)
+		    g.DrawText Me.OnText.Trim, (radius/2) - 1 + mOnTextDeltaX, y, g.Width - Radius - mBallMargin - 4, True
 		    
 		  ElseIf Not Me.mValue And Me.OffText.Trim <> "" Then
 		    
+		    // Calculating coordinates 
 		    w = g.TextWidth(Me.OffText)
-		    x = g.Width - w - 11
-		    If x < 28 Then x = 28
-		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - rayon - mBallMargin - 7, True
+		    h = g.TextHeight(Me.offText, 2000) 
+		    y = (g.Height / 2) - h/2 + (g.FontAscent * 0.85) + Me.DeltaTextY
+		    
+		    x = g.Width - w - (radius / 2) - 1
+		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - Radius - mBallMargin - 7, True
 		    
 		  End
 		  
-		  g.RestoreState
+		  g.RestoreState // Restore the state
 		  
 		  RaiseEvent AfterDrawingSwitch(g, areas, Me.mPressed, Me.mHover)
 		  
@@ -218,8 +279,17 @@ Inherits DesktopCanvas
 
 
 	#tag Method, Flags = &h21
+		Private Function BrightNess(c as color) As double
+		  // Using https://alienryderflex.com/hsp.html
+		  
+		   Return  Sqrt( 0.299 * (c.Red^2) + 0.587 * (c.green^2) + 0.114 * (c.blue^2) )
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function ChangeColorValue(c as color, intensite as Integer = 15) As Color
 		  Var value As Double
+		  
 		  If intensite < 0 Then
 		    value = c.Value - (c.value * (Abs(intensite)/100))
 		  Else
@@ -235,13 +305,6 @@ Inherits DesktopCanvas
 
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  Var v As Double = (Color.FillColor.value * 0.8)
-		  If v < 0 Then v = 0
-		  Me.OffBackcolor =  Color.HSV(Color.FillColor.Hue, Color.FillColor.Saturation, v)
-		  
-		  Me.OnBackcolor = Color.HighlightColor
-		  
-		  
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
@@ -331,6 +394,34 @@ Inherits DesktopCanvas
 		Event ValueChanged(NewValue as boolean, ByCode as Boolean = True)
 	#tag EndHook
 
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mAutoOffTextColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mAutoOffTextColor = value
+			End Set
+		#tag EndSetter
+		AutoOffTextColor As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mAutoOnTextColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mAutoOnTextColor = value
+			End Set
+		#tag EndSetter
+		AutoOnTextColor As Boolean
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
@@ -574,6 +665,14 @@ Inherits DesktopCanvas
 		#tag EndSetter
 		Italic As Boolean
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mAutoOffTextColor As Boolean = True
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mAutoOnTextColor As Boolean = True
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mBallAnimation As Boolean = True
@@ -1236,6 +1335,14 @@ Inherits DesktopCanvas
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AutoOnTextColor"
+			Visible=true
+			Group="Appearance ON"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="OnTextColor"
 			Visible=true
 			Group="Appearance ON"
@@ -1265,6 +1372,14 @@ Inherits DesktopCanvas
 			Group="Appearance OFF"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutoOffTextColor"
+			Visible=true
+			Group="Appearance OFF"
+			InitialValue="True"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

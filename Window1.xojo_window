@@ -11,7 +11,7 @@ Begin DesktopWindow Window1
    HasMaximizeButton=   True
    HasMinimizeButton=   True
    HasTitleBar     =   True
-   Height          =   292
+   Height          =   278
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -60,6 +60,8 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoOffTextColor=   True
+      AutoOnTextColor =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -111,6 +113,8 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoOffTextColor=   True
+      AutoOnTextColor =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -121,12 +125,12 @@ Begin DesktopWindow Window1
       Bold            =   True
       BorderColor     =   &c00000000
       BorderVisible   =   False
-      DeltaTextY      =   0.0
+      DeltaTextY      =   1.0
       Enabled         =   True
       FontName        =   "SmallSystem"
-      FontSize        =   11.0
+      FontSize        =   12.0
       FontUnit        =   0
-      Height          =   22
+      Height          =   24
       Index           =   -2147483648
       Italic          =   False
       Left            =   20
@@ -150,18 +154,20 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   80
+      Top             =   82
       Transparent     =   True
       Underline       =   False
       Value           =   False
       Visible         =   True
-      Width           =   88
+      Width           =   110
    End
    Begin pbSwitch SwitchBorder
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoOffTextColor=   True
+      AutoOnTextColor =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cA0A0A000
@@ -201,7 +207,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   124
+      Top             =   130
       Transparent     =   True
       Underline       =   False
       Value           =   False
@@ -250,7 +256,7 @@ Begin DesktopWindow Window1
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   120
+      Left            =   137
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -266,7 +272,7 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   80
+      Top             =   84
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -298,7 +304,7 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   124
+      Top             =   130
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -339,6 +345,8 @@ Begin DesktopWindow Window1
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoOffTextColor=   True
+      AutoOnTextColor =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cC0C0C000
@@ -357,7 +365,7 @@ Begin DesktopWindow Window1
       Height          =   24
       Index           =   -2147483648
       Italic          =   False
-      Left            =   18
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -378,7 +386,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   170
+      Top             =   176
       Transparent     =   True
       Underline       =   False
       Value           =   False
@@ -395,7 +403,7 @@ Begin DesktopWindow Window1
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   101
+      Left            =   103
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -411,17 +419,19 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   170
+      Top             =   176
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   235
    End
-   Begin pbSwitch pbSwitch1
+   Begin pbSwitch SwitchMargin
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowFocusRing  =   True
       AllowTabs       =   True
+      AutoOffTextColor=   True
+      AutoOnTextColor =   True
       Backdrop        =   0
       BallAnimation   =   True
       BallBorderColor =   &cB9B9B900
@@ -440,7 +450,7 @@ Begin DesktopWindow Window1
       Height          =   24
       Index           =   -2147483648
       Italic          =   False
-      Left            =   18
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -461,14 +471,14 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   217
+      Top             =   223
       Transparent     =   True
       Underline       =   False
       Value           =   False
       Visible         =   True
       Width           =   70
    End
-   Begin DesktopLabel Label5
+   Begin DesktopLabel LabelMargin
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -478,7 +488,7 @@ Begin DesktopWindow Window1
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   103
+      Left            =   105
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -494,11 +504,64 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   217
+      Top             =   223
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   100
+      Width           =   88
+   End
+   Begin DesktopUpDownArrows UpDownArrows1
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowTabStop    =   True
+      Enabled         =   True
+      Height          =   23
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   196
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   27
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   224
+      Transparent     =   False
+      Visible         =   True
+      Width           =   14
+   End
+   Begin DesktopCheckBox CheckBallBorder
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Ball Border visible"
+      Enabled         =   True
+      FontName        =   "Segoe UI"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   234
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   28
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   223
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      VisualState     =   0
+      Width           =   117
    End
 End
 #tag EndDesktopWindow
@@ -567,6 +630,27 @@ End
 		    g.FontSize = 20
 		    g.DrawText "×", 5, 18
 		  End
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events UpDownArrows1
+	#tag Event
+		Sub DownPressed()
+		  If SwitchMargin.BallMargin > 0 Then SwitchMargin.BallMargin = SwitchMargin.BallMargin -1
+		  LabelMargin.Text = "Ball Margin = " + SwitchMargin.BallMargin.ToString
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub UpPressed()
+		  If SwitchMargin.BallMargin < 8 Then SwitchMargin.BallMargin = SwitchMargin.BallMargin + 1
+		  LabelMargin.Text = "Ball Margin = " + SwitchMargin.BallMargin.ToString
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBallBorder
+	#tag Event
+		Sub ValueChanged()
+		  SwitchMargin.BallBorderVisible = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

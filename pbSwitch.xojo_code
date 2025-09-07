@@ -86,23 +86,33 @@ Inherits DesktopCanvas
 		  g.AntiAliased = True
 		  g.AntiAliasMode = Graphics.AntiAliasModes.HighQuality
 		  
-		  Var Radius As Integer = g.Height
+		  Var Diameter As Integer = g.Height
 		  Var colBackColor As Color
 		  Var colBorder As Color
-		  Var colText As Color
-		  Var colBall As Color
 		  
 		  // Determination of colors ////////////////////////////////////////
 		  
 		  // Set the color of the border
 		  // If the control has the focus, then we systematically draw a border with the system color "HighLight"
 		  // even if it is not enabled
-		   
-		  If Me.AllowFocusRing _
-		  And Me.AllowFocus _
-		  And Me.HaveFocus _
-		  Then colBorder = Color.HighlightColor _
-		  Else colBorder = Me.mBorderColor
+		  
+		  If Not Me.enabled Then
+		    
+		    colBorder = Color.DisabledTextColor
+		    
+		  ElseIf _
+		    Me.AllowFocusRing _
+		    And Me.AllowFocus _
+		    And Me.HaveFocus _
+		    Then 
+		    
+		    colBorder = Color.HighlightColor 
+		    
+		  Else 
+		    
+		    colBorder = Me.mBorderColor
+		    
+		  end
 		  
 		  
 		  // Sets the background Color (on Or off).
@@ -117,158 +127,86 @@ Inherits DesktopCanvas
 		    colBackColor = mOffBackColor
 		  End
 		  
+		  
+		  
+		  // If the cursor Is over the control, the backcolor Is lightened.
 		  If (Me.mPressed Or Me.mHover) And mEnabled Then colBackColor = ChangeColorValue(colBackColor, 25)
-		  
-		  
-		  // Sets the color of the text, if enabled or automatic, or that of the property
-		  
-		  If Not Me.mEnabled Then
-		    
-		    colText = &cEFEFEF00 // Light Grey
-		    
-		  ElseIf Me.mValue Then // If On
-		    
-		    If mAutoOnTextColor Then
-		      If BrightNess(mOnBackcolor) > 128 Then colText = Color.Black Else colText = Color.White
-		    Else
-		      colText = Me.mOnTextColor
-		    End
-		    
-		  Else // if Off
-		    
-		    If mAutoOffTextColor Then
-		      If BrightNess(mOffBackcolor) > 128 Then colText = Color.Black Else colText = Color.White
-		    Else
-		      colText = Me.mOffTextColor
-		    End
-		    
-		  End
-		  
-		  // Set then color ot the ball
-		  
-		  If Not Me.mEnabled Then 
-		    colBall = Color.DarkBevelColor
-		  ElseIf Me.mValue Then
-		    colBall = Me.mBallRightColor
-		  Else
-		    colBall = Me.mBallLeftColor
-		  End
-		  
-		  
-		  // End of determination of colors ////////////////////////////////////////
 		  
 		  // Draw the half discs of the sides
 		  
 		  g.DrawingColor = colBackColor
-		  g.FillOval 0, 0, Radius, Radius
-		  g.FillOval g.Width - Radius, 0, Radius, Radius
 		  
-		  // If necessary, drawing of the border of the discs
-		  // If requested in the Property or if the control has focus
 		  
-		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
-		    g.DrawingColor = colBorder
-		    g.DrawOval 0, 0, Radius, Radius
-		    g.DrawOval g.Width - Radius, 0, Radius, Radius
-		  End
-		  
-		  // Drawing of the central rectangle
-		  g.DrawingColor = colBackColor
-		  g.FillRectangle (Radius/2),0, g.Width - Radius, Radius
-		  
-		  // If necessary, draw the border lines at the top and bottom
-		  
-		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
-		    g.DrawingColor = colBorder
-		    g.DrawLine (Radius/2), 0, g.Width - (Radius/2) , 0
-		    g.DrawLine (Radius/2), Radius - 1 , g.Width - (Radius/2), Radius - 1
-		  End
-		  
-		  // Calculate the position of the ball
-		  
-		  Var xBall As Double
-		  
-		  If Me.value Then
+		  if me.BallMargin >= 0 then
 		    
-		    If mPressed Then
-		      xBall = g.Width - Radius - mBallMargin
-		    Else
-		      xBall = g.Width - Radius + mBallMargin
+		    g.FillOval 0, 0, Diameter, Diameter
+		    g.FillOval g.Width - Diameter, 0, Diameter, Diameter
+		    
+		    // If necessary, drawing of the border of the discs
+		    // If requested in the Property or if the control has focus
+		    
+		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
+		      g.DrawingColor = colBorder
+		      g.DrawOval 0, 0, Diameter, Diameter
+		      g.DrawOval g.Width - Diameter, 0, Diameter, Diameter
+		    End
+		    
+		    // Drawing of the central rectangle
+		    g.DrawingColor = colBackColor
+		    g.FillRectangle (Diameter/2),0, g.Width - Diameter, Diameter
+		    
+		    // If necessary, draw the border lines at the top and bottom
+		    
+		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
+		      g.DrawingColor = colBorder
+		      g.DrawLine (Diameter/2), 0, g.Width - (Diameter/2) , 0
+		      g.DrawLine (Diameter/2), Diameter - 1 , g.Width - (Diameter/2), Diameter - 1
 		    End
 		    
 		  Else
 		    
-		    xBall = mBallMargin 
-		    
-		  End
-		  
-		  
-		  
-		  g.DrawingColor = colBall // Set the color of the ball
-		  
-		  //Drawing the ball.
-		  //If animation is requested And the mouse button Is pressed, deformation towards the center Of the control.
-		  
-		  If Not mPressed Or Not mBallAnimation Then
-		    
-		    g.FillOval xBall, mBallMargin, Radius - (mBallMargin * 2), Radius - (mBallMargin * 2)
-		    
-		    If Me.mBallBorderVisible Then
-		      g.DrawingColor = Me.mBallBorderColor
-		      g.DrawOval xBall, mBallMargin, Radius - (mBallMargin * 2), Radius - (mBallMargin * 2)
+		    If Abs(mBallMargin) >= (g.Height / 2) - 3 Then 
+		      mBallMargin = ((g.Height / 2) - 3) * -1
 		    End
 		    
-		  Else
+		    Var absmargin as integer = abs(mBallMargin)
 		    
-		    g.FillOval xBall, mBallMargin, Radius, Radius - (mBallMargin * 2)
 		    
-		    If Me.mBallBorderVisible Then
-		      g.DrawingColor = Me.mBallBorderColor
-		      g.DrawOval xBall, mBallMargin, Radius, Radius - (mBallMargin * 2)
+		    g.FillOval 0, absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
+		    g.FillOval g.Width - Diameter+(absmargin*2), absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
+		    
+		    // If necessary, drawing of the border of the discs
+		    // If requested in the Property or if the control has focus
+		    
+		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
+		      g.DrawingColor = colBorder
+		      g.DrawOval  0, absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
+		      g.DrawOval g.Width - Diameter+(absmargin*2), absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
 		    End
+		    
+		    // Drawing of the central rectangle
+		    g.DrawingColor = colBackColor
+		    g.FillRectangle (Diameter-absmargin) / 2 , absmargin, g.Width - Diameter + absmargin, Diameter-(absmargin*2)
+		    
+		    // If necessary, draw the border lines at the top and bottom
+		    
+		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
+		      g.DrawingColor = colBorder
+		      g.DrawLine (Diameter-absmargin) / 2, absmargin, g.Width - ((Diameter - absmargin)/2) + 1, absmargin
+		      g.DrawLine (Diameter-absmargin) / 2, Diameter - absmargin - 1 ,  g.Width - ((Diameter - absmargin)/2) + 1, Diameter - absmargin - 1
+		    End
+		    
 		    
 		  end
 		  
-		  // Drawing the text On Or Off
-		  // Apply the settings
-		  g.FontName = Me.mFontName
-		  g.FontSize = Me.mFontSize
-		  g.FontUnit = Me.mFontUnit
-		  g.Bold = Me.mBold
-		  g.Italic = Me.mItalic
-		  g.Underline = Me.mUnderline
 		  
+		  // Drawing the ball
 		  
+		  me.DrawingBall(g, colBackColor)
 		  
+		  // Drawing text
 		  
-		  Var y As Double = (g.TextHeight("WWWW",2000) / 2) + 8 + Me.DeltaTextY
-		  Var x As Double
-		  Var w As Double
-		  Var h As Double 
-		  
-		  g.DrawingColor = colText
-		  
-		  If Me.mValue And Me.OnText.Trim <> "" Then
-		    
-		    // Calculating coordinates 
-		    w = g.TextWidth(Me.OnText)
-		    h = g.TextHeight(Me.OnText, 2000)
-		    y = (g.Height / 2) - h/2 + (g.FontAscent * 0.85) + Me.DeltaTextY
-		    
-		    w = g.TextWidth(Me.OnText)
-		    g.DrawText Me.OnText.Trim, (radius/2) - 1 + mOnTextDeltaX, y, g.Width - Radius - mBallMargin - 4, True
-		    
-		  ElseIf Not Me.mValue And Me.OffText.Trim <> "" Then
-		    
-		    // Calculating coordinates 
-		    w = g.TextWidth(Me.OffText)
-		    h = g.TextHeight(Me.offText, 2000) 
-		    y = (g.Height / 2) - h/2 + (g.FontAscent * 0.85) + Me.DeltaTextY
-		    
-		    x = g.Width - w - (radius / 2) - 1
-		    g.DrawText Me.OffText.Trim, x + mOffTextDeltaX, y, g.Width - Radius - mBallMargin - 7, True
-		    
-		  End
+		  me.DrawingText(g)
 		  
 		  g.RestoreState // Restore the state
 		  
@@ -282,7 +220,7 @@ Inherits DesktopCanvas
 		Private Function BrightNess(c as color) As double
 		  // Using https://alienryderflex.com/hsp.html
 		  
-		   Return  Sqrt( 0.299 * (c.Red^2) + 0.587 * (c.green^2) + 0.114 * (c.blue^2) )
+		  Return  Sqrt( 0.299 * (c.Red^2) + 0.587 * (c.green^2) + 0.114 * (c.blue^2) )
 		End Function
 	#tag EndMethod
 
@@ -308,6 +246,213 @@ Inherits DesktopCanvas
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub DrawingBall(g as Graphics, colBackColor as color)
+		  Var colBall As Color
+		  Var colShadow As Color
+		  Var Diameter As Integer = g.Height
+		  
+		  If mBallShadowIntensity > 0 Then colShadow =  ChangeColorValue(colBackColor, mBallShadowIntensity * -1)
+		  
+		  // Set then color ot the ball
+		  
+		  If Not Me.mEnabled Then 
+		    colBall = Color.DarkBevelColor
+		  ElseIf Me.mValue Then
+		    colBall = Me.mBallRightColor
+		  Else
+		    colBall = Me.mBallLeftColor
+		  End
+		  
+		  // Calculate the position of the ball
+		  
+		  Var xBall As Double
+		  
+		  
+		  
+		  If Me.value Then
+		    
+		    Select case mBallMargin 
+		      
+		    case is > 0
+		      
+		      If mPressed and mBallAnimation Then
+		        xBall = g.Width - Diameter - mBallMargin
+		      Else
+		        xBall = g.Width - Diameter + mBallMargin
+		      End
+		      
+		    case is <= 0
+		      
+		      If mPressed And mBallAnimation Then
+		        xBall = g.Width - Diameter - 2
+		      Else
+		        xBall = g.Width - Diameter 
+		      End
+		      
+		    end Select
+		    
+		  Elseif mBallMargin >= 0 then
+		    
+		    xBall = mBallMargin 
+		    
+		  else // <0
+		    
+		    xBall = 0
+		    
+		  End
+		  
+		  
+		  //Drawing the ball.
+		  //If animation is requested And the mouse button Is pressed, deformation towards the center Of the control.
+		  
+		  Var ShadowShift as Integer
+		  If mBallMargin < 3 Then
+		    ShadowShift = mBallMargin
+		  Else
+		    ShadowShift = 3
+		  end
+		  
+		  
+		  If Not mPressed Or Not mBallAnimation Then
+		    
+		    If mBallShadowIntensity > 0 And ShadowShift > 0 and mBallMargin > 0 Then
+		      g.DrawingColor = colShadow
+		      g.FillOval xBall , mBallMargin + ShadowShift, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
+		    End If
+		    
+		    g.DrawingColor = colBall // Set the color of the ball
+		    if mBallMargin >=0 then
+		      g.FillOval xBall, mBallMargin, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
+		    else
+		      g.FillOval xBall, 0, Diameter , Diameter 
+		    end
+		    
+		    If Me.mBallBorderVisible Then
+		      
+		      g.DrawingColor = Me.mBallBorderColor
+		      if mBallMargin >=0 then
+		        g.DrawOval xBall, mBallMargin, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
+		      else
+		        g.DrawOval xBall, 0, Diameter , Diameter 
+		      End
+		      
+		    end
+		    
+		  Else
+		    
+		    If mBallShadowIntensity > 0 And ShadowShift > 0 and mBallMargin > 0 Then
+		      g.DrawingColor = colShadow
+		      g.FillOval xBall , mBallMargin + ShadowShift, Diameter, Diameter - (mBallMargin * 2)
+		    End If
+		    
+		    g.DrawingColor = colBall // Set the color of the ball
+		    if mBallMargin>=0 then 
+		      g.FillOval xBall, mBallMargin, Diameter, Diameter - (mBallMargin * 2)
+		    Else
+		      g.FillOval xBall, 0, Diameter+2, Diameter
+		    end
+		    
+		    
+		    If Me.mBallBorderVisible Then
+		      g.DrawingColor = Me.mBallBorderColor
+		      If mBallMargin>=0 Then
+		        g.DrawOval xBall, mBallMargin, Diameter, Diameter - (mBallMargin * 2)
+		      Else
+		        g.DrawOval xBall, 0, Diameter+2   , Diameter
+		      end
+		    End
+		    
+		  end
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub DrawingText(g as Graphics)
+		  Var colText As Color
+		  Var Diameter As Integer = g.Height
+		  
+		  // Sets the color of the text, if enabled or automatic, or that of the property
+		  
+		  If Not Me.mEnabled Then
+		    
+		    colText = &cEFEFEF00 // Light Grey
+		    
+		  ElseIf Me.mValue Then // If On
+		    
+		    If mAutoOnTextColor Then
+		      If BrightNess(mOnBackcolor) > 128 Then colText = Color.Black Else colText = Color.White
+		    Else
+		      colText = Me.mOnTextColor
+		    End
+		    
+		  Else // if Off
+		    
+		    If mAutoOffTextColor Then
+		      If BrightNess(mOffBackcolor) > 128 Then colText = Color.Black Else colText = Color.White
+		    Else
+		      colText = Me.mOffTextColor
+		    End
+		    
+		  End
+		  
+		  // Apply the settings
+		  g.FontName = Me.mFontName
+		  g.FontSize = Me.mFontSize
+		  g.FontUnit = Me.mFontUnit
+		  g.Bold = Me.mBold
+		  g.Italic = Me.mItalic
+		  g.Underline = Me.mUnderline
+		  
+		  Var Max As Double
+		  Var x As Double
+		  Var w As Double
+		  Var y As Double 
+		  
+		  g.DrawingColor = colText
+		  
+		  If Me.mValue And Me.OnText.Trim <> "" Then
+		    
+		    // Calculating coordinates 
+		    
+		    Max = g.Width - (Diameter * 1.5)  - 1 + mOnTextDeltaX
+		    w = g.TextWidth(Me.OnText)
+		    If w > Max Then w = Max
+		    
+		    If Me.mTextAlignment = TextAlignments.Ends Then
+		      x = Diameter/2 - 1 + mOnTextDeltaX
+		    Else
+		      x = (g.Width - (mBallMargin * 2)) / 2 - (w/2) - mBallMargin
+		    End If
+		    
+		    y = (g.Height / 2) + (0.25 * g.TextHeight(Me.onText,2000))
+		    
+		    
+		    g.DrawText Me.OnText.Trim, x + Me.OnTextDeltaX, y + Me.DeltaTextY, Max, True
+		    
+		  ElseIf Not Me.mValue And Me.OffText.Trim <> "" Then
+		    
+		    // Calculating coordinates 
+		    
+		    Max = g.Width - (Diameter * 1.5)  - 1 + mOffTextDeltaX
+		    
+		    w = g.TextWidth(Me.OffText)
+		    If w > Max Then w = Max
+		    
+		    If Me.mTextAlignment = TextAlignments.Ends Then
+		      x = g.Width - Diameter / 2 - w + mOffTextDeltaX
+		    Else
+		      x = (g.Width - (mBallMargin * 2)) / 2 - (w/2) + (Diameter*0.5)
+		    End If
+		    
+		    y = (g.Height / 2) + (0.25 * g.TextHeight(Me.offText,2000)) 
+		    
+		    g.DrawText Me.OffText.Trim, x + Me.OffDeltaX, y + Me.DeltaTextY, Max, True
+		    
+		  End
 		End Sub
 	#tag EndMethod
 
@@ -403,7 +548,10 @@ Inherits DesktopCanvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mAutoOffTextColor = value
+			  If value <> mAutoOffTextColor Then
+			    mAutoOffTextColor = value
+			    Me.Refresh
+			  End
 			End Set
 		#tag EndSetter
 		AutoOffTextColor As Boolean
@@ -417,7 +565,10 @@ Inherits DesktopCanvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mAutoOnTextColor = value
+			  If mAutoOnTextColor <> value then
+			    mAutoOnTextColor = value
+			    Me.Refresh
+			  end
 			End Set
 		#tag EndSetter
 		AutoOnTextColor As Boolean
@@ -499,7 +650,7 @@ Inherits DesktopCanvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If value <> mBallMargin Then
+			  If value <> mBallMargin And value >= -5 Then
 			    mBallMargin = value
 			    Me.Refresh
 			  End
@@ -527,6 +678,25 @@ Inherits DesktopCanvas
 			End Set
 		#tag EndSetter
 		BallRightColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mBallShadowIntensity
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value < 0 Then value = 0
+			  If value > 100 Then value = 100
+			  If value <> mBallShadowIntensity Then
+			    mBallShadowIntensity = value
+			    Me.Refresh
+			  end
+			End Set
+		#tag EndSetter
+		BallShadowIntensity As Integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -568,7 +738,10 @@ Inherits DesktopCanvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mBorderVisible = value
+			  If value <> mBorderVisible Then
+			    mBorderVisible = value
+			    Me.Refresh
+			  end
 			End Set
 		#tag EndSetter
 		BorderVisible As Boolean
@@ -699,6 +872,10 @@ Inherits DesktopCanvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private mBallShadowIntensity As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mBold As Boolean
 	#tag EndProperty
 
@@ -774,6 +951,10 @@ Inherits DesktopCanvas
 
 	#tag Property, Flags = &h21
 		Private mPressed As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mTextAlignment As TextAlignments = TextAlignments.Ends
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -957,6 +1138,23 @@ Inherits DesktopCanvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  Return mTextAlignment
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value <> mTextAlignment then
+			    mTextAlignment = value
+			    Me.Refresh
+			  End
+			End Set
+		#tag EndSetter
+		TextAlignment As TextAlignments
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return mUnderline
 			End Get
 		#tag EndGetter
@@ -988,6 +1186,12 @@ Inherits DesktopCanvas
 		#tag EndSetter
 		Value As Boolean
 	#tag EndComputedProperty
+
+
+	#tag Enum, Name = TextAlignments, Type = Integer, Flags = &h0
+		Ends
+		Center
+	#tag EndEnum
 
 
 	#tag ViewBehavior
@@ -1126,6 +1330,18 @@ Inherits DesktopCanvas
 			InitialValue="&cB9B9B900"
 			Type="Color"
 			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextAlignment"
+			Visible=true
+			Group="Appearance"
+			InitialValue="1"
+			Type="TextAlignments"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Ends"
+				"1 - Center"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DeltaTextY"
@@ -1308,6 +1524,14 @@ Inherits DesktopCanvas
 			Group="Appearance BALL"
 			InitialValue="&cF3F3F300"
 			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BallShadowIntensity"
+			Visible=true
+			Group="Appearance BALL"
+			InitialValue="0"
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -32,7 +32,7 @@ The class is standalone, you just need to include it in a project, for example b
 - AutoOffTextColor/AutoOnTextColor, to automatically set the text color (black or white) depending on the background color.
 - TextAlignements, to define whether the text will be aligned to the edge opposite the ball or to the middle of the space between the ball and the opposite side.
 - DeltaTextY, to adjust the top of the both right and left texts.
-- OffDeltaX, OnDeltaY, to adjust the left of each text
+- OffDeltaX, OnDeltaX, to adjust the left of each text
 
 ## General properties
 - Enabled

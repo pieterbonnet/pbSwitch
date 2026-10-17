@@ -32,10 +32,10 @@ Begin DesktopWindow Window1
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   530
+      Height          =   544
       Index           =   -2147483648
       Italic          =   False
-      Left            =   10
+      Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -67,7 +67,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   244
+         Left            =   234
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -95,7 +95,7 @@ Begin DesktopWindow Window1
          Height          =   23
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   206
+         Left            =   196
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -126,7 +126,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   115
+         Left            =   105
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -159,7 +159,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   113
+         Left            =   103
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -192,7 +192,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   92
+         Left            =   82
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -225,7 +225,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   147
+         Left            =   137
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -259,7 +259,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   351
+         Left            =   267
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -290,7 +290,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   223
+         Left            =   187
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -320,7 +320,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   111
+         Left            =   82
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -354,7 +354,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   21
+         Left            =   11
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -397,7 +397,7 @@ Begin DesktopWindow Window1
             Index           =   -2147483648
             InitialParent   =   "GroupBox1"
             Italic          =   False
-            Left            =   55
+            Left            =   45
             LockBottom      =   False
             LockedInPosition=   False
             LockLeft        =   True
@@ -438,7 +438,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   501
+         Left            =   491
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -454,7 +454,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   2
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   38
+         Top             =   26
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -471,7 +471,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   583
+         Left            =   573
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -487,7 +487,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   2
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   38
+         Top             =   26
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -504,7 +504,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   326
+         Left            =   316
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -520,7 +520,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   71
+         Top             =   59
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -537,7 +537,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   326
+         Left            =   316
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -553,7 +553,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   110
+         Top             =   98
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -570,7 +570,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   326
+         Left            =   316
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -586,7 +586,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   147
+         Top             =   135
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -601,7 +601,7 @@ Begin DesktopWindow Window1
          Height          =   23
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   553
+         Left            =   543
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -612,7 +612,7 @@ Begin DesktopWindow Window1
          TabIndex        =   12
          TabPanelIndex   =   2
          Tooltip         =   ""
-         Top             =   449
+         Top             =   437
          Transparent     =   False
          Visible         =   True
          Width           =   14
@@ -632,7 +632,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   418
+         Left            =   378
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -648,11 +648,11 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   448
+         Top             =   436
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   130
+         Width           =   162
       End
       Begin DesktopCanvas Canvas1
          AllowAutoDeactivate=   True
@@ -664,7 +664,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   501
+         Left            =   491
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -675,7 +675,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   110
+         Top             =   98
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -690,7 +690,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   583
+         Left            =   573
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -701,7 +701,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   110
+         Top             =   98
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -716,7 +716,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   501
+         Left            =   491
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -727,7 +727,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   146
+         Top             =   134
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -742,7 +742,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   583
+         Left            =   573
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -753,7 +753,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   146
+         Top             =   134
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -769,7 +769,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   329
+         Left            =   319
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -785,7 +785,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   366
+         Top             =   354
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -801,7 +801,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   511
+         Left            =   501
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -812,7 +812,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   366
+         Top             =   354
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -827,7 +827,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   593
+         Left            =   583
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -838,7 +838,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   366
+         Top             =   354
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -854,7 +854,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   510
+         Left            =   500
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -870,7 +870,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   2
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   344
+         Top             =   332
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -887,7 +887,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   592
+         Left            =   582
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -903,7 +903,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   2
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   344
+         Top             =   332
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -919,7 +919,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   502
+         Left            =   492
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -930,7 +930,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   182
+         Top             =   170
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -946,7 +946,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   318
+         Left            =   308
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -962,7 +962,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   182
+         Top             =   170
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -978,7 +978,7 @@ Begin DesktopWindow Window1
          Height          =   22
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   510
+         Left            =   500
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -989,7 +989,7 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   406
+         Top             =   394
          Transparent     =   False
          Visible         =   True
          Width           =   70
@@ -1005,7 +1005,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   326
+         Left            =   316
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1021,7 +1021,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   406
+         Top             =   394
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1045,7 +1045,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   480
+         Left            =   470
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1062,7 +1062,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   216
+         Top             =   204
          Transparent     =   False
          Underline       =   False
          ValidationMask  =   ""
@@ -1087,7 +1087,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   583
+         Left            =   573
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1104,7 +1104,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   216
+         Top             =   204
          Transparent     =   False
          Underline       =   False
          ValidationMask  =   ""
@@ -1122,7 +1122,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   418
+         Left            =   408
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1138,7 +1138,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   250
+         Top             =   238
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1155,7 +1155,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   523
+         Left            =   513
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1171,7 +1171,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   250
+         Top             =   238
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1188,7 +1188,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   619
+         Left            =   609
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1204,7 +1204,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   250
+         Top             =   238
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1237,7 +1237,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   30
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1293,7 +1293,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   30
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1349,7 +1349,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   30
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1392,7 +1392,7 @@ Begin DesktopWindow Window1
          BallLeftColor   =   &cF2F2F200
          BallMargin      =   3
          BallRightColor  =   &cF2F2F200
-         BallShadowIntensity=   30
+         BallShadowIntensity=   0
          Bold            =   True
          BorderColor     =   &c00000000
          BorderVisible   =   False
@@ -1405,7 +1405,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   30
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1413,12 +1413,12 @@ Begin DesktopWindow Window1
          LockTop         =   True
          OffBackcolor    =   &c177DF200
          OffDeltaX       =   0
-         OffText         =   "Option type 2"
+         OffText         =   "Option 2"
          OffTextColor    =   &cFFFFFF00
          OnBackcolor     =   &c80008000
          OnLeft          =   False
          OnRight         =   False
-         OnText          =   "Option type 1"
+         OnText          =   "Option 1"
          OnTextColor     =   &cFFFFFF00
          OnTextDeltaX    =   0
          Scope           =   0
@@ -1461,7 +1461,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   30
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1488,7 +1488,7 @@ Begin DesktopWindow Window1
          Underline       =   False
          Value           =   False
          Visible         =   True
-         Width           =   71
+         Width           =   50
       End
       Begin pbSwitch pbSwitch1
          AllowAutoDeactivate=   True
@@ -1511,13 +1511,13 @@ Begin DesktopWindow Window1
          DeltaTextY      =   1.0
          Enabled         =   True
          FontName        =   "System"
-         FontSize        =   0.0
+         FontSize        =   10.0
          FontUnit        =   0
          Height          =   24
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   583
+         Left            =   573
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1525,12 +1525,12 @@ Begin DesktopWindow Window1
          LockTop         =   True
          OffBackcolor    =   &c9F000000
          OffDeltaX       =   0
-         OffText         =   "Border ON"
+         OffText         =   "Border unvisible"
          OffTextColor    =   &c00000000
          OnBackcolor     =   &c00D23500
          OnLeft          =   False
          OnRight         =   False
-         OnText          =   "Border ON"
+         OnText          =   "Border visible"
          OnTextColor     =   &c00000000
          OnTextDeltaX    =   0
          Scope           =   2
@@ -1539,7 +1539,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   182
+         Top             =   170
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1557,11 +1557,11 @@ Begin DesktopWindow Window1
          BallAnimation   =   True
          BallBorderColor =   &cB9B9B900
          BallBorderVisible=   False
-         BallLeftColor   =   &cF3F3F300
+         BallLeftColor   =   &c4E4E4E00
          BallMargin      =   3
-         BallRightColor  =   &cF3F3F300
+         BallRightColor  =   &c4E4E4E00
          BallShadowIntensity=   0
-         Bold            =   True
+         Bold            =   False
          BorderColor     =   &cB9B9B900
          BorderVisible   =   True
          DeltaTextY      =   1.0
@@ -1573,17 +1573,17 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   590
+         Left            =   580
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
-         OffBackcolor    =   &c9F000000
+         OffBackcolor    =   &cFFFFFF00
          OffDeltaX       =   0
          OffText         =   "BallBorder OFF"
          OffTextColor    =   &c00000000
-         OnBackcolor     =   &c00D23500
+         OnBackcolor     =   &cFFFFFF00
          OnLeft          =   False
          OnRight         =   False
          OnText          =   "BallBorder ON"
@@ -1595,7 +1595,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   405
+         Top             =   393
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1613,11 +1613,11 @@ Begin DesktopWindow Window1
          BallAnimation   =   True
          BallBorderColor =   &cB9B9B900
          BallBorderVisible=   False
-         BallLeftColor   =   &cF3F3F300
+         BallLeftColor   =   &c4E4E4E00
          BallMargin      =   3
-         BallRightColor  =   &cF3F3F300
+         BallRightColor  =   &c4E4E4E00
          BallShadowIntensity=   0
-         Bold            =   True
+         Bold            =   False
          BorderColor     =   &cB9B9B900
          BorderVisible   =   True
          DeltaTextY      =   1.0
@@ -1629,17 +1629,17 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   579
+         Left            =   569
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
-         OffBackcolor    =   &c9F000000
+         OffBackcolor    =   &cFFFFFF00
          OffDeltaX       =   0
          OffText         =   "BallAnimation OFF"
          OffTextColor    =   &c00000000
-         OnBackcolor     =   &c00D23500
+         OnBackcolor     =   &cFFFFFF00
          OnLeft          =   False
          OnRight         =   False
          OnText          =   "BallAnimation ON"
@@ -1651,7 +1651,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   449
+         Top             =   437
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1685,7 +1685,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   501
+         Left            =   491
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1707,7 +1707,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   70
+         Top             =   58
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1741,7 +1741,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   584
+         Left            =   574
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1763,7 +1763,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   70
+         Top             =   58
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1797,7 +1797,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   369
+         Left            =   359
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1819,7 +1819,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   250
+         Top             =   238
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1853,7 +1853,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   474
+         Left            =   464
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1875,7 +1875,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   250
+         Top             =   238
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1909,7 +1909,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   570
+         Left            =   560
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1931,7 +1931,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   0
          Tooltip         =   ""
-         Top             =   250
+         Top             =   238
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -1965,7 +1965,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   369
+         Left            =   359
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1987,7 +1987,7 @@ Begin DesktopWindow Window1
          TabStop         =   True
          TextAlignment   =   1
          Tooltip         =   ""
-         Top             =   286
+         Top             =   274
          Transparent     =   True
          Underline       =   False
          Value           =   False
@@ -2003,7 +2003,7 @@ Begin DesktopWindow Window1
          Height          =   23
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
-         Left            =   553
+         Left            =   543
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -2014,7 +2014,7 @@ Begin DesktopWindow Window1
          TabIndex        =   39
          TabPanelIndex   =   2
          Tooltip         =   ""
-         Top             =   481
+         Top             =   473
          Transparent     =   False
          Visible         =   True
          Width           =   14
@@ -2023,7 +2023,7 @@ Begin DesktopWindow Window1
          _mName          =   ""
          _mPanelIndex    =   0
       End
-      Begin DesktopLabel LabelShadow
+      Begin DesktopLabel LabelShadowPG
          AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
@@ -2034,7 +2034,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "TabPanel1"
          Italic          =   False
-         Left            =   404
+         Left            =   378
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -2046,15 +2046,15 @@ Begin DesktopWindow Window1
          TabIndex        =   40
          TabPanelIndex   =   2
          TabStop         =   True
-         Text            =   "Ball Shadow Intensity = 3"
+         Text            =   "Ball shadow intensity = 0"
          TextAlignment   =   3
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   480
+         Top             =   472
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   144
+         Width           =   159
       End
    End
 End
@@ -2073,7 +2073,7 @@ End
 #tag Events UpDownArrows1
 	#tag Event
 		Sub DownPressed()
-		  If SwitchMargin.BallMargin > -6 Then SwitchMargin.BallMargin = SwitchMargin.BallMargin -1
+		  If SwitchMargin.BallMargin > -5 Then SwitchMargin.BallMargin = SwitchMargin.BallMargin -1
 		  LabelMargin.Text = "Ball Margin = " + SwitchMargin.BallMargin.ToString
 		End Sub
 	#tag EndEvent
@@ -2101,7 +2101,7 @@ End
 #tag Events UpDownArrows2
 	#tag Event
 		Sub DownPressed()
-		  If SwitchPG.BallMargin > -6 Then SwitchPG.BallMargin = SwitchPG.BallMargin -1
+		  If SwitchPG.BallMargin > 0 Then SwitchPG.BallMargin = SwitchPG.BallMargin -1
 		  LabelMarginPG.Text = "Ball Margin = " + SwitchPG.BallMargin.ToString
 		End Sub
 	#tag EndEvent
@@ -2382,6 +2382,10 @@ End
 		Sub AfterDrawingSwitch(g as Graphics, areas() as Rect, Pressed as Boolean, Hover as Boolean)
 		  #Pragma Unused areas
 		  
+		  // height = 24
+		  // width  = 71
+		  // BallMargin = 3
+		  
 		  If Me.Value Then
 		    g.DrawingColor = Me.OnBackcolor
 		    g.Bold = True
@@ -2392,6 +2396,8 @@ End
 		    g.FontSize = 20
 		    g.DrawText "×", 5, 18
 		  End
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -2399,7 +2405,7 @@ End
 	#tag Event
 		Sub ValueChanged(NewValue as boolean, ByCode as Boolean = True)
 		  #Pragma Unused NewValue
-		  #Pragma Unused ByCode
+		  
 		  
 		  If Me.OnLeft Then
 		    MessageBox Me.RightText// OffText synonym
@@ -2444,12 +2450,26 @@ End
 		  
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  Me.BorderColor = Color.DarkBevelColor
+		  Me.BorderVisible = True
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events pbSwitch3
 	#tag Event
 		Sub ValueChanged(NewValue as boolean, ByCode as Boolean = True)
 		  #Pragma Unused ByCode
 		  SwitchPG.BallAnimation = NewValue
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  Me.BorderColor = Color.DarkBevelColor
+		  Me.BorderVisible = True
 		  
 		End Sub
 	#tag EndEvent
@@ -2564,14 +2584,14 @@ End
 #tag Events UpDownArrows3
 	#tag Event
 		Sub DownPressed()
-		  SwitchPG.BallShadowIntensity = SwitchPG.BallShadowIntensity - 5
-		  LabelShadow.Text = "Ball Shadow Intensity = " + SwitchPG.BallShadowIntensity.ToString
+		  SwitchPG.BallShadowIntensity = SwitchPG.BallShadowIntensity - 5 
+		  LabelShadowPG.Text = "Ball Shadow intensity = " + SwitchPG.BallShadowIntensity.ToString
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub UpPressed()
-		  SwitchPG.BallShadowIntensity = SwitchPG.BallShadowIntensity + 5
-		  LabelShadow.Text = "Ball Shadow Intensity = " + SwitchPG.BallShadowIntensity.ToString
+		  SwitchPG.BallShadowIntensity = SwitchPG.BallShadowIntensity + 5 
+		  LabelShadowPG.Text = "Ball Shadow intensity = " + SwitchPG.BallShadowIntensity.ToString
 		End Sub
 	#tag EndEvent
 #tag EndEvents

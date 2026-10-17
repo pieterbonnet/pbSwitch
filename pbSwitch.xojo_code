@@ -31,10 +31,11 @@ Inherits DesktopCanvas
 		    mPressed = False
 		    Exit Sub
 		  End
-		  Me.Value = Not Me.Value
+		  
+		  Me.mValue = Not Me.mValue
 		  mPressed = False
 		  Me.Refresh
-		  
+		  RaiseEvent ValueChanged Me.mValue, False
 		End Sub
 	#tag EndEvent
 
@@ -89,6 +90,9 @@ Inherits DesktopCanvas
 		  Var Diameter As Integer = g.Height
 		  Var colBackColor As Color
 		  Var colBorder As Color
+		  Var colShadow As Color
+		  Var colText As Color
+		  Var colBall As Color
 		  
 		  // Determination of colors ////////////////////////////////////////
 		  
@@ -96,23 +100,11 @@ Inherits DesktopCanvas
 		  // If the control has the focus, then we systematically draw a border with the system color "HighLight"
 		  // even if it is not enabled
 		  
-		  If Not Me.enabled Then
-		    
-		    colBorder = Color.DisabledTextColor
-		    
-		  ElseIf _
-		    Me.AllowFocusRing _
-		    And Me.AllowFocus _
-		    And Me.HaveFocus _
-		    Then 
-		    
-		    colBorder = Color.HighlightColor 
-		    
-		  Else 
-		    
-		    colBorder = Me.mBorderColor
-		    
-		  end
+		  If Me.AllowFocusRing _
+		  And Me.AllowFocus _
+		  And Me.HaveFocus _
+		  Then colBorder = Color.HighlightColor _
+		  Else colBorder = Me.mBorderColor
 		  
 		  
 		  // Sets the background Color (on Or off).
@@ -126,254 +118,6 @@ Inherits DesktopCanvas
 		  Else
 		    colBackColor = mOffBackColor
 		  End
-		  
-		  
-		  
-		  // If the cursor Is over the control, the backcolor Is lightened.
-		  If (Me.mPressed Or Me.mHover) And mEnabled Then colBackColor = ChangeColorValue(colBackColor, 25)
-		  
-		  // Draw the half discs of the sides
-		  
-		  g.DrawingColor = colBackColor
-		  
-		  
-		  if me.BallMargin >= 0 then
-		    
-		    g.FillOval 0, 0, Diameter, Diameter
-		    g.FillOval g.Width - Diameter, 0, Diameter, Diameter
-		    
-		    // If necessary, drawing of the border of the discs
-		    // If requested in the Property or if the control has focus
-		    
-		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
-		      g.DrawingColor = colBorder
-		      g.DrawOval 0, 0, Diameter, Diameter
-		      g.DrawOval g.Width - Diameter, 0, Diameter, Diameter
-		    End
-		    
-		    // Drawing of the central rectangle
-		    g.DrawingColor = colBackColor
-		    g.FillRectangle (Diameter/2),0, g.Width - Diameter, Diameter
-		    
-		    // If necessary, draw the border lines at the top and bottom
-		    
-		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
-		      g.DrawingColor = colBorder
-		      g.DrawLine (Diameter/2), 0, g.Width - (Diameter/2) , 0
-		      g.DrawLine (Diameter/2), Diameter - 1 , g.Width - (Diameter/2), Diameter - 1
-		    End
-		    
-		  Else
-		    
-		    If Abs(mBallMargin) >= (g.Height / 2) - 3 Then 
-		      mBallMargin = ((g.Height / 2) - 3) * -1
-		    End
-		    
-		    Var absmargin as integer = abs(mBallMargin)
-		    
-		    
-		    g.FillOval 0, absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
-		    g.FillOval g.Width - Diameter+(absmargin*2), absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
-		    
-		    // If necessary, drawing of the border of the discs
-		    // If requested in the Property or if the control has focus
-		    
-		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
-		      g.DrawingColor = colBorder
-		      g.DrawOval  0, absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
-		      g.DrawOval g.Width - Diameter+(absmargin*2), absmargin, Diameter-(absmargin*2), Diameter-(absmargin*2)
-		    End
-		    
-		    // Drawing of the central rectangle
-		    g.DrawingColor = colBackColor
-		    g.FillRectangle (Diameter-absmargin) / 2 , absmargin, g.Width - Diameter + absmargin, Diameter-(absmargin*2)
-		    
-		    // If necessary, draw the border lines at the top and bottom
-		    
-		    If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
-		      g.DrawingColor = colBorder
-		      g.DrawLine (Diameter-absmargin) / 2, absmargin, g.Width - ((Diameter - absmargin)/2) + 1, absmargin
-		      g.DrawLine (Diameter-absmargin) / 2, Diameter - absmargin - 1 ,  g.Width - ((Diameter - absmargin)/2) + 1, Diameter - absmargin - 1
-		    End
-		    
-		    
-		  end
-		  
-		  
-		  // Drawing the ball
-		  
-		  me.DrawingBall(g, colBackColor)
-		  
-		  // Drawing text
-		  
-		  me.DrawingText(g)
-		  
-		  g.RestoreState // Restore the state
-		  
-		  RaiseEvent AfterDrawingSwitch(g, areas, Me.mPressed, Me.mHover)
-		  
-		End Sub
-	#tag EndEvent
-
-
-	#tag Method, Flags = &h21
-		Private Function BrightNess(c as color) As double
-		  // Using https://alienryderflex.com/hsp.html
-		  
-		  Return  Sqrt( 0.299 * (c.Red^2) + 0.587 * (c.green^2) + 0.114 * (c.blue^2) )
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function ChangeColorValue(c as color, intensite as Integer = 15) As Color
-		  Var value As Double
-		  
-		  If intensite < 0 Then
-		    value = c.Value - (c.value * (Abs(intensite)/100))
-		  Else
-		    value = c.Value + (c.value * (Abs(intensite)/100))
-		  End
-		  
-		  If value > 1  Then value = 1
-		  
-		  Return Color.HSV(c.Hue, c.Saturation, value)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Constructor()
-		  // Calling the overridden superclass constructor.
-		  Super.Constructor
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub DrawingBall(g as Graphics, colBackColor as color)
-		  Var colBall As Color
-		  Var colShadow As Color
-		  Var Diameter As Integer = g.Height
-		  
-		  If mBallShadowIntensity > 0 Then colShadow =  ChangeColorValue(colBackColor, mBallShadowIntensity * -1)
-		  
-		  // Set then color ot the ball
-		  
-		  If Not Me.mEnabled Then 
-		    colBall = Color.DarkBevelColor
-		  ElseIf Me.mValue Then
-		    colBall = Me.mBallRightColor
-		  Else
-		    colBall = Me.mBallLeftColor
-		  End
-		  
-		  // Calculate the position of the ball
-		  
-		  Var xBall As Double
-		  
-		  
-		  
-		  If Me.value Then
-		    
-		    Select case mBallMargin 
-		      
-		    case is > 0
-		      
-		      If mPressed and mBallAnimation Then
-		        xBall = g.Width - Diameter - mBallMargin
-		      Else
-		        xBall = g.Width - Diameter + mBallMargin
-		      End
-		      
-		    case is <= 0
-		      
-		      If mPressed And mBallAnimation Then
-		        xBall = g.Width - Diameter - 2
-		      Else
-		        xBall = g.Width - Diameter 
-		      End
-		      
-		    end Select
-		    
-		  Elseif mBallMargin >= 0 then
-		    
-		    xBall = mBallMargin 
-		    
-		  else // <0
-		    
-		    xBall = 0
-		    
-		  End
-		  
-		  
-		  //Drawing the ball.
-		  //If animation is requested And the mouse button Is pressed, deformation towards the center Of the control.
-		  
-		  Var ShadowShift as Integer
-		  If mBallMargin < 3 Then
-		    ShadowShift = mBallMargin
-		  Else
-		    ShadowShift = 3
-		  end
-		  
-		  
-		  If Not mPressed Or Not mBallAnimation Then
-		    
-		    If mBallShadowIntensity > 0 And ShadowShift > 0 and mBallMargin > 0 Then
-		      g.DrawingColor = colShadow
-		      g.FillOval xBall , mBallMargin + ShadowShift, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
-		    End If
-		    
-		    g.DrawingColor = colBall // Set the color of the ball
-		    if mBallMargin >=0 then
-		      g.FillOval xBall, mBallMargin, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
-		    else
-		      g.FillOval xBall, 0, Diameter , Diameter 
-		    end
-		    
-		    If Me.mBallBorderVisible Then
-		      
-		      g.DrawingColor = Me.mBallBorderColor
-		      if mBallMargin >=0 then
-		        g.DrawOval xBall, mBallMargin, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
-		      else
-		        g.DrawOval xBall, 0, Diameter , Diameter 
-		      End
-		      
-		    end
-		    
-		  Else
-		    
-		    If mBallShadowIntensity > 0 And ShadowShift > 0 and mBallMargin > 0 Then
-		      g.DrawingColor = colShadow
-		      g.FillOval xBall , mBallMargin + ShadowShift, Diameter, Diameter - (mBallMargin * 2)
-		    End If
-		    
-		    g.DrawingColor = colBall // Set the color of the ball
-		    if mBallMargin>=0 then 
-		      g.FillOval xBall, mBallMargin, Diameter, Diameter - (mBallMargin * 2)
-		    Else
-		      g.FillOval xBall, 0, Diameter+2, Diameter
-		    end
-		    
-		    
-		    If Me.mBallBorderVisible Then
-		      g.DrawingColor = Me.mBallBorderColor
-		      If mBallMargin>=0 Then
-		        g.DrawOval xBall, mBallMargin, Diameter, Diameter - (mBallMargin * 2)
-		      Else
-		        g.DrawOval xBall, 0, Diameter+2   , Diameter
-		      end
-		    End
-		    
-		  end
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub DrawingText(g as Graphics)
-		  Var colText As Color
-		  Var Diameter As Integer = g.Height
 		  
 		  // Sets the color of the text, if enabled or automatic, or that of the property
 		  
@@ -399,6 +143,107 @@ Inherits DesktopCanvas
 		    
 		  End
 		  
+		  // If the cursor Is over the control, the backcolor Is lightened.
+		  If (Me.mPressed Or Me.mHover) And mEnabled Then colBackColor = ChangeColorValue(colBackColor, 25)
+		  
+		  If mBallShadowIntensity > 0 Then
+		    colShadow =  ChangeColorValue(colBackColor, mBallShadowIntensity * -1)
+		  End
+		  
+		  
+		  
+		  // Set then color ot the ball
+		  
+		  If Not Me.mEnabled Then 
+		    colBall = Color.DarkBevelColor
+		  ElseIf Me.mValue Then
+		    colBall = Me.mBallRightColor
+		  Else
+		    colBall = Me.mBallLeftColor
+		  End
+		  
+		  
+		  // End of determination of colors ////////////////////////////////////////
+		  
+		  // Draw the half discs of the sides
+		  
+		  g.DrawingColor = colBackColor
+		  g.FillOval 0, 0, Diameter, Diameter
+		  g.FillOval g.Width - Diameter, 0, Diameter, Diameter
+		  
+		  // If necessary, drawing of the border of the discs
+		  // If requested in the Property or if the control has focus
+		  
+		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then 
+		    g.DrawingColor = colBorder
+		    g.DrawOval 0, 0, Diameter, Diameter
+		    g.DrawOval g.Width - Diameter, 0, Diameter, Diameter
+		  End
+		  
+		  // Drawing of the central rectangle
+		  g.DrawingColor = colBackColor
+		  g.FillRectangle (Diameter/2),0, g.Width - Diameter, Diameter
+		  
+		  // If necessary, draw the border lines at the top and bottom
+		  
+		  If mBorderVisible Or (Me.AllowFocusRing And Me.AllowFocus And Me.HaveFocus) Then
+		    g.DrawingColor = colBorder
+		    g.DrawLine (Diameter/2), 0, g.Width - (Diameter/2) , 0
+		    g.DrawLine (Diameter/2), Diameter - 1 , g.Width - (Diameter/2), Diameter - 1
+		  End
+		  
+		  // Calculate the position of the ball
+		  
+		  Var xBall As Double
+		  
+		  If Me.value Then
+		    
+		    If mPressed Then
+		      xBall = g.Width - Diameter - mBallMargin
+		    Else
+		      xBall = g.Width - Diameter + mBallMargin
+		    End
+		    
+		  Else
+		    
+		    xBall = mBallMargin 
+		    
+		  End
+		  
+		  
+		  
+		  g.DrawingColor = colBall // Set the color of the ball
+		  
+		  //Drawing the ball.
+		  //If animation is requested And the mouse button Is pressed, deformation towards the center Of the control.
+		  
+		  If Not mPressed Or Not mBallAnimation Then
+		    
+		    If mBallShadowIntensity > 0 And mBallMargin >= 2 Then
+		      g.DrawingColor = colShadow
+		      g.FillOval xBall + 2, mBallMargin + 2, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
+		      g.DrawingColor = colBall
+		    End
+		    
+		    g.FillOval xBall, mBallMargin, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
+		    
+		    If Me.mBallBorderVisible Then
+		      g.DrawingColor = Me.mBallBorderColor
+		      g.DrawOval xBall, mBallMargin, Diameter - (mBallMargin * 2), Diameter - (mBallMargin * 2)
+		    End
+		    
+		  Else
+		    
+		    g.FillOval xBall, mBallMargin, Diameter, Diameter - (mBallMargin * 2)
+		    
+		    If Me.mBallBorderVisible Then
+		      g.DrawingColor = Me.mBallBorderColor
+		      g.DrawOval xBall, mBallMargin, Diameter, Diameter - (mBallMargin * 2)
+		    End
+		    
+		  end
+		  
+		  // Drawing the text On Or Off
 		  // Apply the settings
 		  g.FontName = Me.mFontName
 		  g.FontSize = Me.mFontSize
@@ -453,6 +298,45 @@ Inherits DesktopCanvas
 		    g.DrawText Me.OffText.Trim, x + Me.OffDeltaX, y + Me.DeltaTextY, Max, True
 		    
 		  End
+		  
+		  g.RestoreState // Restore the state
+		  
+		  RaiseEvent AfterDrawingSwitch(g, areas, Me.mPressed, Me.mHover)
+		  
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h21
+		Private Function BrightNess(c as color) As double
+		  // Using https://alienryderflex.com/hsp.html
+		  
+		  Return  Sqrt( 0.299 * (c.Red^2) + 0.587 * (c.green^2) + 0.114 * (c.blue^2) )
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function ChangeColorValue(c as color, intensite as Integer = 15) As Color
+		  Var value As Double
+		  
+		  If intensite < 0 Then
+		    value = c.Value - (c.value * (Abs(intensite)/100))
+		  Else
+		    value = c.Value + (c.value * (Abs(intensite)/100))
+		  End
+		  
+		  If value > 1  Then value = 1
+		  
+		  Return Color.HSV(c.Hue, c.Saturation, value)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor()
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor
+		  
 		End Sub
 	#tag EndMethod
 
@@ -478,10 +362,12 @@ Inherits DesktopCanvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub OnLeft(assigns value as Boolean)
-		  mValue = Not Value
-		  RaiseEvent ValueChanged(value, True)
-		  Me.Refresh
+		Sub OnLeft(assigns NewValue as Boolean)
+		  if NewValue <> (not mValue) then
+		    mValue = Not NewValue
+		    RaiseEvent ValueChanged(mValue, True)
+		    Me.Refresh
+		  end
 		End Sub
 	#tag EndMethod
 
@@ -492,10 +378,12 @@ Inherits DesktopCanvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub OnRight(assigns value as Boolean)
-		  mValue = Value
-		  RaiseEvent ValueChanged(value, True)
-		  Me.Refresh
+		Sub OnRight(assigns NewValue as Boolean)
+		  if NewValue <> mValue then
+		    mValue = NewValue
+		    RaiseEvent ValueChanged(mValue, True)
+		    Me.Refresh
+		  end
 		End Sub
 	#tag EndMethod
 
@@ -650,7 +538,7 @@ Inherits DesktopCanvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If value <> mBallMargin And value >= -5 Then
+			  If value <> mBallMargin And value >=0 Then
 			    mBallMargin = value
 			    Me.Refresh
 			  End
@@ -1335,7 +1223,7 @@ Inherits DesktopCanvas
 			Name="TextAlignment"
 			Visible=true
 			Group="Appearance"
-			InitialValue="1"
+			InitialValue="0"
 			Type="TextAlignments"
 			EditorType="Enum"
 			#tag EnumValues

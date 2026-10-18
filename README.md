@@ -1,6 +1,6 @@
 # pbSwitch
 
-**Inherits from:** [DesktopCanvas](https://documentation.xojo.com/api/desktop/desktopcanvas.html)
+**Inherits from:** [[DesktopCanvas](https://documentation.xojo.com/api/user_interface/desktop/desktopcanvas.html)](https://documentation.xojo.com/api/user_interface/desktop/desktopcanvas.html)
 
 A **toggle switch** control drawn entirely in code, pill-shaped, with a moving ball, an optional text for each state and optional light effects (soft shadow, ball shading, recessed track).
 
@@ -601,6 +601,7 @@ End Sub
 
 ## See also
 
-- [DesktopCanvas](https://documentation.xojo.com/api/desktop/desktopcanvas.html)
+- [DesktopCanvas](https://documentation.xojo.com/api/desktop/desktopcanvas.html)](https://documentation.xojo.com/api/user_interface/desktop/desktopcanvas.html)
+- [Graphics](https://documentation.xojo.com/api/graphics/graphics.html)
 - [Graphics](https://documentation.xojo.com/api/graphics/graphics.html)
 - [Color](https://documentation.xojo.com/api/graphics/color.html)
